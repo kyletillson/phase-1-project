@@ -16,6 +16,11 @@
     color: white;
   }
 
+  #image {
+    width: 700px;
+    height: 700px;
+  }
+
 body{
     background: #230312
 }
@@ -41,7 +46,34 @@ body{
     border: 1px solid white; */
   }
 
+.cocktail-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: .25rem;
+    margin-top: 1rem;
+}
 
+.card{
+    border: 1px solid white;
+    background-color: #230312;
+    padding: .5rem;
+}
+
+.card > .header{
+    margin-bottom: .25rem;
+
+}
+
+
+
+.card > .body {
+    font-size: .8rem;
+    
+}
+
+.hide{
+    display: none;
+}
 
 
 
