@@ -1,0 +1,47 @@
+*{ font-family: Helvetica;
+    
+}
+
+#header {
+    text-align: center;
+    color: white;
+    font-size: 55px;
+}
+
+.drinkInfo{
+    height: 550px;
+    padding: 30px;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+  }
+
+body{
+    background: #230312
+}
+
+#cocktail-menu {
+    height: 15vh;
+    /* background: rgb(0, 0, 0); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 3vh;
+  }
+
+  #cocktail-menu img {
+    padding: 1%;
+    height: 80%;
+    width: 8vw;
+    display: flex;
+    justify-content: center;
+    font-size: 3vh;
+    align-items: center;
+    /* border-radius: 2em;
+    border: 1px solid white; */
+  }
+
+
+
+
+
