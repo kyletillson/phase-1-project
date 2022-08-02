@@ -67,34 +67,47 @@ likeBtn.addEventListener('click', (e) => {
 
 
 // fetch("http://localhost:3000/users")
-const userCardTemplate = document.querySelector("[data-user-template]")
-const userCardContainer = document.querySelector("[data-user-cards-container]")
+const drinkCardTemplate = document.querySelector("[data-user-template]")
+const drinkCardContainer = document.querySelector("[data-user-cards-container]")
 const searchInput = document.querySelector("[data-search]")
 
 let users = []
 
 
 searchInput.addEventListener("input", e => {
-//   const value = e.target.value.toLowerCase()
-  users.forEach(user => {
-    const isVisible =
-      user.strDrink == e.target.value
-    user.element.classList.toggle("hide", !isVisible)
-  })
-})
+  const input = e.target.value;
+  console.log(input);
+fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
+.then(res => res.json())
+.then(data => {
+  drinks = data.drinks.map(drink => {
+    const card = drinkCardTemplate.content.cloneNode(true).children[0]
+    const header = card.querySelector("[data-header]")
+    const body = card.querySelector("[data-body]")
+    header.textContent = drink.strDrink
+    body.textContent = drink.strIngredient1
+    drinkCardContainer.append(card)
+    return { name: drink.strDrink, ingredient: drink.strIngredient1, element: card }
+});
+  
+  });})
 
-fetch("http://localhost:3000/users")
-  .then(res => res.json())
-  .then(data => {
-    users = data.map(user => {
-        console.log(user.strDrink)
-      const card = userCardTemplate.content.cloneNode(true).children[0]
-      const header = card.querySelector("[data-header]")
-      const body = card.querySelector("[data-body]")
-      header.textContent = user.strDrink
-      body.textContent = user.strIngredient1
-      userCardContainer.append(card)
-      return { name: user.strDrink, email: user.strIngredient1, element: card }
-    })
+
+// fetch("http://localhost:3000/users")
+//   .then(res => res.json())
+//   .then(data => {
+//     users = data.map(user => {
+//       const card = userCardTemplate.content.cloneNode(true).children[0]
+//       const header = card.querySelector("[data-header]")
+//       const body = card.querySelector("[data-body]")
+//       header.textContent = user.strDrink
+//       body.textContent = user.strIngredient1
+//       userCardContainer.append(card)
+//       return { name: user.strDrink, email: user.strIngredient1, element: card }
+//     })
     
-  })
+//   })
+
+
+
+//   fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
