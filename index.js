@@ -61,38 +61,35 @@ likeBtn.addEventListener('click', (e) => {
    
 })
 
-const userCardTemplate = document.querySelector('[data-user-template]')
-const userCardContainer = document.querySelector('[data-user-cards-container]')
-const searchInput = document.querySelector('[data-search]')
-let cocktails = []
 
-searchInput.addEventListener('input', e => {
-    const value = e.target.value.toLowerCase()
-    cocktails.forEach(cocktail => {
-        const isVisible = 
-        cocktail.strDrink.toLowerCase().includes(value) || cocktail.strDrinkThumb.toLowerCase().includes(value)
-        cocktail.element.classList.toggle('hide', !isVisible)
-    })
+
+
+const userCardTemplate = document.querySelector("[data-user-template]")
+const userCardContainer = document.querySelector("[data-user-cards-container]")
+const searchInput = document.querySelector("[data-search]")
+
+let users = []
+
+searchInput.addEventListener("input", e => {
+  const value = e.target.value.toLowerCase()
+  users.forEach(user => {
+    const isVisible =
+      user.strDrink.toLowerCase().includes(value) ||
+      user.strIngredient1.toLowerCase().includes(value)
+    user.element.classList.toggle("hide", !isVisible)
+  })
 })
 
-fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
-.then(res => res.json())
-.then(data => {
-    cocktails = data.map(cocktail => {
-        
-        const card = userCardTemplate.content.cloneNode(true).children[0]
-        const header = card.querySelector('[data-header]')
-        const body = card.querySelector('[data-body]')
-        // const imageSearch = drink.strDrinkThumb
-
-        header.textContent = drink.strDrink
-        userCardContainer.append(card)
-        return {name: drink.strDrink, element: card }
+fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")
+  .then(res => res.json())
+  .then(data => {
+    users = data.map(user => {
+      const card = userCardTemplate.content.cloneNode(true).children[0]
+      const header = card.querySelector("[data-header]")
+      const body = card.querySelector("[data-body]")
+      header.textContent = user.strDrink
+      body.textContent = user.strIngredient1
+      userCardContainer.append(card)
+      return { name: user.strDrink, email: user.strIngredient1, element: card }
     })
-})
-
-
-           
-
-
-   
+  })
