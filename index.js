@@ -64,26 +64,30 @@ likeBtn.addEventListener('click', (e) => {
 
 
 
+
+
+// fetch("http://localhost:3000/users")
 const userCardTemplate = document.querySelector("[data-user-template]")
 const userCardContainer = document.querySelector("[data-user-cards-container]")
 const searchInput = document.querySelector("[data-search]")
 
 let users = []
 
+
 searchInput.addEventListener("input", e => {
-  const value = e.target.value.toLowerCase()
+//   const value = e.target.value.toLowerCase()
   users.forEach(user => {
     const isVisible =
-      user.strDrink.toLowerCase().includes(value) ||
-      user.strIngredient1.toLowerCase().includes(value)
+      user.strDrink == e.target.value
     user.element.classList.toggle("hide", !isVisible)
   })
 })
 
-fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")
+fetch("http://localhost:3000/users")
   .then(res => res.json())
   .then(data => {
     users = data.map(user => {
+        console.log(user.strDrink)
       const card = userCardTemplate.content.cloneNode(true).children[0]
       const header = card.querySelector("[data-header]")
       const body = card.querySelector("[data-body]")
@@ -92,4 +96,5 @@ fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?f=a")
       userCardContainer.append(card)
       return { name: user.strDrink, email: user.strIngredient1, element: card }
     })
+    
   })

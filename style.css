@@ -75,6 +75,8 @@ body{
   
   .card > .header {
     margin-bottom: .25rem;
+    font-size: .8rem;
+    color: #777;
   }
   
   .card > .body {
