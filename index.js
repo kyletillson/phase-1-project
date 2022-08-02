@@ -14,6 +14,7 @@ const likeBtn = document.querySelector('#button');
 
 
 
+
 fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
 .then(res => res.json())
 .then(data => {
@@ -84,13 +85,48 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
     const card = drinkCardTemplate.content.cloneNode(true).children[0]
     const header = card.querySelector("[data-header]")
     const body = card.querySelector("[data-body]")
+
+    card.addEventListener('click', () => {
+        drinkName.innerText = drink.strDrink
+        drinkImage.src = drink.strDrinkThumb
+        instructions.innerText = drink.strInstructions
+    Object.keys(drink).forEach(key => {
+        if (drink[key] === null) {
+            return drink[key] = ''
+        }
+    })
+    
+        p1.innerText = drink.strMeasure1 + ' ' + drink.strIngredient1;
+        p2.innerText = drink.strMeasure2 + ' ' + drink.strIngredient2;
+        p3.innerText = drink.strMeasure3 + ' ' + drink.strIngredient3;
+        p4.innerText = drink.strMeasure4 + ' ' + drink.strIngredient4;
+        p5.innerText = drink.strMeasure5 + ' ' + drink.strIngredient5;
+        p6.innerText = drink.strMeasure6 + ' ' + drink.strIngredient6;
+        p7.innerText = drink.strMeasure7 + ' ' + drink.strIngredient7;
+
+        
+        
+      
+       
+    })
+
     header.textContent = drink.strDrink
-    body.textContent = drink.strIngredient1
+    body.textContent = drink.strAlcoholic
     drinkCardContainer.append(card)
-    return { name: drink.strDrink, ingredient: drink.strIngredient1, element: card }
+    return { name: drink.strDrink, ingredient: drink.strAlcoholic, element: card }
+
 });
+
+
+})
+
+    
+    
   
-  });})
+   
+})
+  
+  
 
 
 // fetch("http://localhost:3000/users")
