@@ -67,7 +67,6 @@ likeBtn.addEventListener('click', (e) => {
 
 
 
-// fetch("http://localhost:3000/users")
 const drinkCardTemplate = document.querySelector("[data-user-template]")
 const drinkCardContainer = document.querySelector("[data-user-cards-container]")
 const searchInput = document.querySelector("[data-search]")
@@ -76,8 +75,9 @@ let users = []
 
 
 searchInput.addEventListener("input", e => {
+    e.target.value = e.target.value[0] || ""
   const input = e.target.value;
-  console.log(input);
+  drinkCardContainer.innerHTML = ""
 fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
 .then(res => res.json())
 .then(data => {
@@ -86,6 +86,7 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
     const header = card.querySelector("[data-header]")
     const body = card.querySelector("[data-body]")
 
+        
     card.addEventListener('click', () => {
         drinkName.innerText = drink.strDrink
         drinkImage.src = drink.strDrinkThumb
@@ -127,23 +128,3 @@ fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
 })
   
   
-
-
-// fetch("http://localhost:3000/users")
-//   .then(res => res.json())
-//   .then(data => {
-//     users = data.map(user => {
-//       const card = userCardTemplate.content.cloneNode(true).children[0]
-//       const header = card.querySelector("[data-header]")
-//       const body = card.querySelector("[data-body]")
-//       header.textContent = user.strDrink
-//       body.textContent = user.strIngredient1
-//       userCardContainer.append(card)
-//       return { name: user.strDrink, email: user.strIngredient1, element: card }
-//     })
-    
-//   })
-
-
-
-//   fetch(`www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
